@@ -54,9 +54,14 @@ english_text = st.text_area("Today's Diary (English)", value=loaded_english, hei
 
 # 저장 버튼
 if st.button("저장"):
-    with open(filename, "w", encoding="utf-8") as f:
+    all_file = "diary_all.txt"
+
+    with open(all_file, "a", encoding="utf-8") as f:  # "a"는 append 모드
+        f.write("=" * 40 + "\n")
+        f.write(f"날짜: {selected_date}\n\n")
         f.write("국문 일기:\n")
         f.write(korean_text + "\n\n")
         f.write("영문 일기:\n")
-        f.write(english_text)
-    st.success(f"{filename} 에 저장되었습니다!")
+        f.write(english_text + "\n\n")
+
+    st.success(f"{all_file} 에 일기가 추가되었습니다!")
